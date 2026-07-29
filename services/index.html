@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" sizes="32x32" href="../brand/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../brand/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="../brand/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../brand/apple-touch-icon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Systack Services — Automated Systems & SAOS AI Fleet</title>
+  <meta name="description" content="Systack services — automated booking, ordering, invoice processing, lead qualification, and SAOS AI agent fleets. Built for service businesses.">
+  <style>
+    :root {
+      --navy: #001a2d;
+      --navy-light: #002845;
+      --teal: #0d9488;
+      --cyan: #00a1db;
+      --cyan-bright: #00c5e0;
+      --light: #f8fafc;
+      --dark: #0f172a;
+      --gray: #64748b;
+      --gray-400: #94a3b8;
+      --gray-600: #475569;
+      --green: #22c55e;
+      --red: #ef4444;
+      --purple: #8b5cf6;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    .nav {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .nav-logo span { color: var(--teal); }
+    .nav-links a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 14px;
+      font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--navy); }
+
+    .header {
+      text-align: center;
+      padding: 80px 24px 40px;
+      max-width: 720px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: white;
+      border-radius: 0 0 20px 20px;
+      margin-bottom: 40px;
+    }
+    .header h1 {
+      font-size: 36px;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+    .header p {
+      font-size: 18px;
+      opacity: 0.85;
+      margin-bottom: 24px;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    .section-alt {
+      background: white;
+      border-radius: 20px;
+      margin: 0 auto 40px;
+      padding: 40px;
+      max-width: 900px;
+    }
+    .section h2 {
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 16px;
+    }
+    .section p {
+      color: var(--gray-600);
+      margin-bottom: 16px;
+      font-size: 16px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin: 32px 0;
+    }
+    .service-card {
+      background: white;
+      border-radius: 16px;
+      padding: 32px;
+      border: 1px solid #e2e8f0;
+      transition: all 0.2s;
+    }
+    .service-card:hover {
+      border-color: var(--cyan);
+      box-shadow: 0 8px 30px rgba(0,161,219,0.1);
+      transform: translateY(-2px);
+    }
+    .service-card .emoji {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .service-card h3 {
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 14px;
+      color: var(--gray);
+      margin-bottom: 16px;
+    }
+    .service-card .price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .service-card .price span {
+      font-size: 14px;
+      color: var(--gray);
+      font-weight: 400;
+    }
+    .service-card a.cta {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--cyan);
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .infra-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+      color: white;
+      padding: 50px;
+      border-radius: 20px;
+      margin: 40px auto;
+      max-width: 900px;
+    }
+    .infra-section h2 {
+      color: white;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .infra-section > p {
+      text-align: center;
+      color: rgba(255,255,255,0.8);
+      max-width: 600px;
+      margin: 0 auto 32px;
+    }
+    .infra-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .infra-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+    }
+    .infra-card .emoji {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .infra-card h3 {
+      color: white;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    .infra-card p {
+      color: rgba(255,255,255,0.8);
+      font-size: 14px;
+    }
+
+    .trust-section {
+      background: #f1f5f9;
+      padding: 40px;
+      border-radius: 16px;
+      margin: 40px auto;
+      max-width: 900px;
+    }
+    .trust-section h2 {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .trust-section > p {
+      text-align: center;
+      color: var(--gray-600);
+      margin-bottom: 24px;
+    }
+    .trust-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .trust-badge {
+      background: var(--navy);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+    }
+
+    .proof-block {
+      background: linear-gradient(135deg, #f0fdf4, #ecfdf5);
+      border: 2px solid var(--green);
+      border-radius: 20px;
+      padding: 40px;
+      margin: 40px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+    .proof-block h3 {
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+    .proof-block .live-badge {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .proof-block a {
+      display: inline-block;
+      color: var(--cyan);
+      font-size: 18px;
+      font-weight: 600;
+      text-decoration: none;
+      margin: 12px 0;
+    }
+
+    .cta-block {
+      text-align: center;
+      padding: 60px 24px;
+      background: var(--navy);
+      color: white;
+      border-radius: 20px;
+      margin: 40px auto;
+      max-width: 900px;
+    }
+    .cta-block h2 {
+      color: white;
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+    .cta-block p {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 24px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: opacity 0.2s;
+      margin: 8px;
+    }
+    .btn:hover { opacity: 0.9; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--cyan));
+      color: white;
+    }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,0.3);
+      color: white;
+      background: transparent;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--gray);
+      font-size: 14px;
+      border-top: 1px solid #e2e8f0;
+      margin-top: 40px;
+    }
+    footer a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    @media (max-width: 640px) {
+      .header h1 { font-size: 28px; }
+      .infra-section { padding: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-logo">Sy<span>Stack</span></div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/services.html">Services</a>
+      <a href="/saos/">SAOS</a>
+      <a href="/work/">Work</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <section class="header">
+    <h1>What We Build</h1>
+    <p>Every service is designed to save you time, capture revenue, and scale.</p>
+  </section>
+
+  <!-- Core Services -->
+  <div class="section">
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="emoji">📅</span>
+        <h3>Automated Booking Systems</h3>
+        <p>Custom booking forms with Square payments, automated confirmations, and no-show prevention. Customers book and pay in under 60 seconds.</p>
+        <div class="price">$2,500 <span>setup + $299/mo</span></div>
+        <a href="/test-book.html" class="cta"  target="_blank" rel="noopener noreferrer">Try Live Demo →</a>
+      </div>
+
+      <div class="service-card">
+        <span class="emoji">📱</span>
+        <h3>Online Ordering Systems</h3>
+        <p>Mobile-first ordering pages for restaurants, delis, food trucks. Branded to your business, integrated with your existing setup.</p>
+        <div class="price">$2,500 <span>setup + $299/mo</span></div>
+        <a href="https://order.theutopiadeli.com" class="cta"  target="_blank" rel="noopener noreferrer">See Live Example →</a>
+      </div>
+
+      <div class="service-card">
+        <span class="emoji">🤖</span>
+        <h3>SAOS AI Agent Fleet</h3>
+        <p>Your own fleet of AI agents — orchestration, build, deployment, validation, risk, and compliance — running on dedicated infrastructure with a customer portal and command center.</p>
+        <div class="price">From $299<span>/mo · No setup fee</span></div>
+        <a href="/saos/" class="cta">Explore SAOS →</a>
+      </div>
+
+      <div class="service-card">
+        <span class="emoji">🔄</span>
+        <h3>Workflow Automation (n8n)</h3>
+        <p>Connect your tools — email, CRM, payment processors, spreadsheets — into automated workflows. Includes invoice processing, document routing, and lead scoring.</p>
+        <div class="price">$1,500 <span>setup + $149/mo</span></div>
+        <a href="/contact.html" class="cta">Get Started →</a>
+      </div>
+
+      <div class="service-card">
+        <span class="emoji">📄</span>
+        <h3>Invoice Processing &amp; Document Extraction</h3>
+        <p>Forward any invoice PDF — we extract vendor, line items, totals, and tax automatically. Route to approval, sync to accounting, eliminate manual data entry.</p>
+        <div class="price">$1,500 <span>setup + $149/mo</span></div>
+        <a href="/services/invoice-extractor.html" class="cta">Try the Demo →</a>
+      </div>
+
+      <div class="service-card">
+        <span class="emoji">🎯</span>
+        <h3>Lead Qualification System</h3>
+        <p>Automated lead scoring and morning briefs. Your agent scrapes, enriches, and ranks prospects overnight — you wake up to warm leads ready for outreach.</p>
+        <div class="price">$1,500 <span>setup + $149/mo</span></div>
+        <a href="/contact.html" class="cta">Get Started →</a>
+      </div>
+
+      <div class="service-card">
+        <span class="emoji">🏷️</span>
+        <h3>Document Classification &amp; Routing</h3>
+        <p>Auto-categorize incoming documents — invoices, contracts, receipts — and route them to the right person or system. No more digging through email attachments.</p>
+        <div class="price">$1,500 <span>setup + $149/mo</span></div>
+        <a href="/contact.html" class="cta">Get Started →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SAOS Infrastructure -->
+  <div class="infra-section">
+    <h2>🔒 SAOS Infrastructure Included</h2>
+    <p>Every deployment includes enterprise-grade security, compliance tools, and a customer portal — not bolted on, built in.</p>
+    <div class="infra-grid">
+      <div class="infra-card">
+        <div class="emoji">🖥️</div>
+        <h3>Customer Portal</h3>
+        <p>Clients access invoices, workflows, service status, and compliance reports in one dashboard. <a href="https://portal.systack.net"  target="_blank" style="color:var(--cyan-bright);" rel="noopener noreferrer">portal.systack.net</a></p>
+      </div>
+      <div class="infra-card">
+        <div class="emoji">📊</div>
+        <h3>Command Center</h3>
+        <p>Real-time health monitoring, service status, and operational metrics. Full visibility into your automation stack.</p>
+      </div>
+      <div class="infra-card">
+        <div class="emoji">🛡️</div>
+        <h3>Compliance Built-In</h3>
+        <p>SOC 2-aligned policies, audit trails, backup verification, and a public trust center. Enterprise-ready from day one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trust & Security -->
+  <div class="trust-section">
+    <h2>🔒 Security &amp; Compliance</h2>
+    <p>Enterprise-grade security on every deployment. Audit trails, encrypted backups, and compliance documentation included.</p>
+    <div class="trust-badges">
+      <span class="trust-badge">🛡️ Local-First AI</span>
+      <span class="trust-badge">🔐 Tailscale VPN</span>
+      <span class="trust-badge">📋 Audit Trails</span>
+      <span class="trust-badge">✅ RBAC + MFA</span>
+      <span class="trust-badge">🔍 Public Trust Center</span>
+    </div>
+    <div style="text-align:center;">
+      <a href="https://portal.systack.net/download/trust-center"  target="_blank" style="color:var(--cyan); font-weight:600; text-decoration:none;" rel="noopener noreferrer">→ View Public Trust Center</a>
+    </div>
+  </div>
+
+  <!-- Proof -->
+  <div class="proof-block">
+    <span class="live-badge">● LIVE RIGHT NOW</span>
+    <h3>Utopia Deli Ordering System</h3>
+    <a href="https://order.theutopiadeli.com"  target="_blank" rel="noopener noreferrer">order.theutopiadeli.com →</a>
+    <p>We built and operate the complete online ordering system for this deli.<br>Customers order, pay, and get confirmations — all automatically.</p>
+    <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 24px; text-align: left;">
+      <div style="padding: 8px 0; font-size: 14px; color: var(--gray-600);">✓ Orders placed in ~60 seconds</div>
+      <div style="padding: 8px 0; font-size: 14px; color: var(--gray-600);">✓ Payments handled automatically</div>
+      <div style="padding: 8px 0; font-size: 14px; color: var(--gray-600);">✓ Runs 24/7 without manual input</div>
+      <div style="padding: 8px 0; font-size: 14px; color: var(--gray-600);">✓ 3.2% processing fee (vs 20%+ on platforms)</div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <h2>Ready to Automate?</h2>
+    <p>Tell us what you need. We'll tell you how fast we can ship it.</p>
+    <a href="/contact.html" class="btn btn-primary">Book a Free Consultation</a>
+    <a href="mailto:support@systack.net" class="btn btn-outline">Message Us</a>
+    <p style="font-size: 13px; opacity: 0.6; margin-top: 16px;">No obligation. We'll map your system in 15 minutes.</p>
+  </div>
+
+  <footer>
+    <p>© 2026 Systack. Systems that run while you sleep.</p>
+    <p style="margin-top: 8px;"><a href="mailto:support@systack.net">support@systack.net</a> · 📞 (501) 274-6231</p>
+  </footer>
+</body>
+</html>
