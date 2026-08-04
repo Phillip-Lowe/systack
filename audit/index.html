@@ -402,6 +402,27 @@
             padding-top: 72px;
         }
     }
+    
+        .tier-card { background: #15151f; border: 1px solid #2a2a3a; border-radius: 16px; padding: 32px; text-align: center; margin-bottom: 24px; }
+        .tier-label { font-size: 0.85rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .tier-name { font-size: 2.6rem; font-weight: 800; margin-top: 8px; }
+        .tier-name.bronze { color: #cd7f32; }
+        .tier-name.silver { color: #c0c0c0; }
+        .tier-name.gold { color: #ffd700; }
+        .tier-progress { font-size: 1rem; color: #a0a0b0; margin-top: 8px; }
+
+        .tier-bars { background: #15151f; border: 1px solid #2a2a3a; border-radius: 16px; padding: 28px; margin-bottom: 24px; }
+        .tier-bar { margin-bottom: 18px; }
+        .tier-bar:last-child { margin-bottom: 0; }
+        .tier-bar-header { display: flex; justify-content: space-between; font-size: 0.95rem; color: #a0a0b0; margin-bottom: 6px; }
+        .tier-bar-track { background: #2a2a3a; border-radius: 8px; height: 12px; overflow: hidden; }
+        .tier-bar-fill { height: 100%; border-radius: 8px; transition: width 0.6s ease; }
+        .tier-bar-fill.bronze { background: #cd7f32; }
+        .tier-bar-fill.silver { background: #c0c0c0; }
+        .tier-bar-fill.gold { background: #ffd700; }
+
+        .email-note { text-align: center; color: #81d4fa; font-size: 0.95rem; margin: 20px 0; padding: 14px; background: rgba(79,195,247,0.08); border: 1px solid rgba(79,195,247,0.2); border-radius: 12px; }
+
     </style>
 </head>
 <body>
@@ -498,25 +519,44 @@
             </div>
 
             <div class="results" id="results">
-                <div class="score-card">
-                    <div class="score-number" id="scoreNumber">—</div>
-                    <div class="score-label">Automation Score</div>
-                    <div class="score-grade" id="scoreGrade">—</div>
+                <div class="tier-card">
+                    <div class="tier-label">Automation Maturity</div>
+                    <div class="tier-name" id="tierName">—</div>
+                    <div class="tier-progress" id="tierProgress">—</div>
+                </div>
+
+                <div class="tier-bars" id="tierBars">
+                    <div class="tier-bar">
+                        <div class="tier-bar-header"><span>Bronze</span><span id="bronzePct">0%</span></div>
+                        <div class="tier-bar-track"><div class="tier-bar-fill bronze" id="bronzeFill" style="width:0%"></div></div>
+                    </div>
+                    <div class="tier-bar">
+                        <div class="tier-bar-header"><span>Silver</span><span id="silverPct">0%</span></div>
+                        <div class="tier-bar-track"><div class="tier-bar-fill silver" id="silverFill" style="width:0%"></div></div>
+                    </div>
+                    <div class="tier-bar">
+                        <div class="tier-bar-header"><span>Gold</span><span id="goldPct">0%</span></div>
+                        <div class="tier-bar-track"><div class="tier-bar-fill gold" id="goldFill" style="width:0%"></div></div>
+                    </div>
                 </div>
 
                 <div class="revenue-impact">
                     <div class="amount" id="revenueAmount">—</div>
-                    <div class="label">Estimated Annual Revenue Impact</div>
+                    <div class="label">Estimated Annual Revenue Leak</div>
                 </div>
 
                 <div class="findings" id="findings">
-                    <h3>What We Found</h3>
+                    <h3>Top Gaps</h3>
                     <div id="findingsList"></div>
                 </div>
 
+                <div class="email-note" id="emailNote">
+                    📧 A full detailed report has been emailed to you.
+                </div>
+
                 <div class="cta">
-                    <h3>Ready to Fix These?</h3>
-                    <p>Book a free 30-minute strategy call. We'll show you exactly how to plug these revenue leaks — no obligation, no pressure.</p>
+                    <h3>Ready to Reach the Next Level?</h3>
+                    <p>Book a free 30-minute strategy call. We'll show you exactly how to close these gaps — no obligation, no pressure.</p>
                     <a href="mailto:plowe@systack.net?subject=Strategy%20Call%20Request%20—%20Automation%20Audit&body=I%20just%20completed%20my%20automation%20audit%20and%20want%20to%20book%20a%20strategy%20call." class="cta-btn">Book My Strategy Call →</a>
                 </div>
             </div>
@@ -600,25 +640,38 @@ form.addEventListener('submit', async (e) => {
         }
 
         // Display results
-        document.getElementById('scoreNumber').textContent = result.score + '/100';
-        const grade = result.score >= 80 ? 'Excellent' : result.score >= 60 ? 'Good' : result.score >= 40 ? 'Needs Work' : 'Critical Gap';
-        const gradeColor = result.score >= 80 ? '#4caf50' : result.score >= 60 ? '#ff9800' : '#f44336';
-        document.getElementById('scoreGrade').textContent = grade;
-        document.getElementById('scoreGrade').style.color = gradeColor;
+        const currentTier = result.current_tier || 'Bronze';
+        const nextTier = result.next_tier || 'Silver';
+        const tierProgress = result.tier_progress || 0;
+        const bronzeScore = result.bronze_score || 0;
+        const silverScore = result.silver_score || 0;
+        const goldScore = result.gold_score || 0;
 
-        document.getElementById('revenueAmount').textContent = result.revenue_impact;
+        const tierNameEl = document.getElementById('tierName');
+        tierNameEl.textContent = currentTier;
+        tierNameEl.className = 'tier-name ' + currentTier.toLowerCase();
+        document.getElementById('tierProgress').textContent = tierProgress + '% of the way to ' + nextTier;
+
+        document.getElementById('bronzePct').textContent = bronzeScore + '%';
+        document.getElementById('silverPct').textContent = silverScore + '%';
+        document.getElementById('goldPct').textContent = goldScore + '%';
+        document.getElementById('bronzeFill').style.width = bronzeScore + '%';
+        document.getElementById('silverFill').style.width = silverScore + '%';
+        document.getElementById('goldFill').style.width = goldScore + '%';
+
+        document.getElementById('revenueAmount').textContent = result.estimated_leak_total || result.revenue_impact || '—';
 
         const findingsList = document.getElementById('findingsList');
         findingsList.innerHTML = '';
-        result.findings.forEach(f => {
+        const topFindings = (result.findings || []).slice(0, 3);
+        topFindings.forEach(f => {
             const div = document.createElement('div');
             div.className = 'finding';
             div.innerHTML = `
-                <div class="icon">${f.icon}</div>
+                <div class="icon">${f.icon || '🔧'}</div>
                 <div class="text">
                     <div class="title">${f.title}</div>
                     <div class="desc">${f.evidence}</div>
-                    <div class="cost">${f.cost}</div>
                 </div>
             `;
             findingsList.appendChild(div);
